@@ -27,7 +27,7 @@ $(document).ready(function() {
 				var header = undefined;
 				var message = undefined;
 				var type = undefined;
-
+				
 				if (data == "success") {
 					window.location.href = "dashboard";
 				} else if (data == "incorrect") {

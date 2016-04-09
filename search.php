@@ -6,31 +6,35 @@
 	$games = array();
 	$back = "";
 	
-	$get_games = null;
+	$gamelist = null;
 	if(strcmp($search_type, "name") == 0)
 	{
-		$get_games = mysql_query("SELECT * FROM games WHERE name LIKE '%" . $search_query . "%'");
+		$gamelist = mysqli_query($mysqli, "SELECT * FROM games WHERE name LIKE '%" . $search_query . "%'");
 	}
 	elseif(strcmp($search_type, "user") == 0)
 	{
-		$get_users = mysql_query("SELECT * FROM users WHERE username LIKE '%" . $search_query . "%'");
-		if(mysql_num_rows($get_users) == 1)
+		$users = mysqli_query($mysqli, "SELECT * FROM users WHERE username LIKE '%" . $search_query . "%'");
+		if(mysqli_num_rows($users) > 0)
 		{
-			$user_id = mysql_fetch_array($get_users)['id'];
-			$get_games = mysql_query("SELECT * FROM games WHERE user_id=" . $user_id);
+			$ids = array();
+			while($user = mysqli_fetch_array($users)) 
+			{
+				array_push($ids, $user["id"]);
+			}
+			$gamelist = mysqli_query($mysqli, "SELECT * FROM games WHERE user_id IN (" . implode(",", $ids) . ")");
 		}
 	}
 	
-	if($get_games)
+	if($gamelist)
 	{
-		while($game = mysql_fetch_array($get_games))
+		while($game = mysqli_fetch_array($gamelist))
 		{
 			$id = $game['id'];
 			$user_id = $game['user_id'];
 			$name = $game['name'];
 			$type = $game['type'];
 
-			$game['owner_name'] = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE id='" . $user_id . "'"))['username'];
+			$game['owner_name'] = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM users WHERE id='" . $user_id . "'"))['username'];
 			
 			array_push($games, $game);
 		}

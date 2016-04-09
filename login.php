@@ -1,19 +1,17 @@
 <?php
 include "base.php";
 
-$username = mysql_real_escape_string($_POST['username']);
-$password = md5(mysql_real_escape_string($_POST['password']));
+$username = mysqli_real_escape_string($_POST['username']);
+$password = md5(mysqi_real_escape_string($_POST['password']));
 
-$logincheck_query = "SELECT * FROM users WHERE username = '" . $username . "' AND password = '" . $password . "'";
-$logincheck = mysql_query($logincheck_query) or die("error: " . mysql_error());
-if(mysql_num_rows($logincheck) == 1)
+$login = mysqli_query($mysqli, "SELECT * FROM users WHERE username = '" . $username . "' AND password = '" . $password . "'");
+if(mysqli_num_rows($login) == 1)
 {
-	$row = mysql_fetch_array($logincheck);
-	$email = $row['email'];
-	
+	$row = mysqli_fetch_array($login);
+
 	$_SESSION['Username'] = $username;
 	$_SESSION['UserID'] = $row['id'];
-	$_SESSION['EmailAddress'] = $email;
+	$_SESSION['EmailAddress'] = $row['email'];
 	$_SESSION['LoggedIn'] = 1;
 	
 	echo('success');

@@ -9,28 +9,23 @@
 		echo('<meta http-equiv="refresh" content="0;..">');
 	}
 
-	//Gets the ID of the current user session
-	$get_ids = mysql_query("SELECT id FROM users WHERE username = '" . $username . "'");
 	$id = $_SESSION['UserID'];
 
-	//If a new game is submitted
 	if(!empty($_POST['new_game']))
 	{
-		$game_name = mysql_real_escape_string($_POST['game_name']);
-		$game_desc = mysql_real_escape_string($_POST['game_desc']);
-		$game_category = mysql_real_escape_string($_POST['category']);
-		$game_type = mysql_real_escape_string($_POST['game_type']);
+		$game_name = mysqli_real_escape_string($_POST['game_name']);
+		$game_desc = mysqli_real_escape_string($_POST['game_desc']);
+		$game_category = mysqli_real_escape_string($_POST['category']);
+		$game_type = mysqli_real_escape_string($_POST['game_type']);
 		
-		//Make a new entry in the "games" table
-		mysql_query("INSERT INTO games (name, category, description, user_id, type) VALUES(
+		mysqli_query($mysqli, "INSERT INTO games (name, category, description, user_id, type) VALUES(
 			'" . $game_name . "',
 			'" . $game_category . "',
 			'" . $game_desc . "',
 			'" . $id . "',
 			'" . $game_type . "')");
 		
-		//Get the id of the created entry
-		$newgameid = mysql_fetch_array(mysql_query("SELECT id FROM games WHERE name = '" . $game_name . "'"))['id'];
+		$newgameid = mysqli_fetch_array(mysqli_query($mysqli, "SELECT id FROM games WHERE name = '" . $game_name . "'"))['id'];
 		
 		$num_data = $_POST['num_data'];
 		if(strcmp($game_type, "ordering") != 0)
@@ -50,21 +45,17 @@
 			{
 				$a = $_POST["row" . $i++];
 				$b = $_POST["row" . $i];
-
 				$newdata_query = "INSERT INTO data (game_id, string_a, string_b) VALUES('". $newgameid ."', '". $a ."', '". $b ."')";
 			}
 			
-			mysql_query($newdata_query) or die(mysql_error());
+			mysqli_query($mysqli, $newdata_query);
 		}
 	}
 	
-	//Uses that ID to retrieve the list of games
-	$games_query = "SELECT * FROM games WHERE user_id = " . $id;
-	$games = mysql_query($games_query);
+	$games = mysqli_query($mysqli, "SELECT * FROM games WHERE user_id = " . $id);
 	
 	$gamelist = array();
-
-	while($row = mysql_fetch_array($games))
+	while($row = mysqli_fetch_array($games))
 	{
 		array_push($gamelist, $row);
 	}
