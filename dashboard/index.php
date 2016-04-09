@@ -13,10 +13,10 @@
 
 	if(!empty($_POST['new_game']))
 	{
-		$game_name = mysqli_real_escape_string($_POST['game_name']);
-		$game_desc = mysqli_real_escape_string($_POST['game_desc']);
-		$game_category = mysqli_real_escape_string($_POST['category']);
-		$game_type = mysqli_real_escape_string($_POST['game_type']);
+		$game_name = mysqli_real_escape_string($myqsli, $_POST['game_name']);
+		$game_desc = mysqli_real_escape_string($myqsli, $_POST['game_desc']);
+		$game_category = mysqli_real_escape_string($myqsli, $_POST['category']);
+		$game_type = mysqli_real_escape_string($myqsli, $_POST['game_type']);
 		
 		mysqli_query($mysqli, "INSERT INTO games (name, category, description, user_id, type) VALUES(
 			'" . $game_name . "',

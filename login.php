@@ -1,8 +1,8 @@
 <?php
 include "base.php";
 
-$username = mysqli_real_escape_string($_POST['username']);
-$password = md5(mysqi_real_escape_string($_POST['password']));
+$username = mysqli_real_escape_string($mysqli, $_POST['username']);
+$password = md5(mysqli_real_escape_string($mysqli, $_POST['password']));
 
 $login = mysqli_query($mysqli, "SELECT * FROM users WHERE username = '" . $username . "' AND password = '" . $password . "'");
 if(mysqli_num_rows($login) == 1)
