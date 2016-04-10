@@ -88,7 +88,7 @@
 			<div class="row">
 				<div class="col-md-2"></div>
 				<div class="col-md-8" id="searchbox">
-					<form role="form" method="POST" action="search.php" name="search" id="search">
+					<form role="form" method="POST" action="../search.php" name="search" id="search">
 						<input style="margin-bottom: 2vh;" class="form-control" placeholder="Search for reviewers made by other people..." type="text" name="search_query" id="search_query" />
 						<input style="float: left;"class="btn btn-default" type="submit" name="search" id="search" value="Search" />
 						<div class="form-inline" style="float: right;">
