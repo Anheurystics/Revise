@@ -1,12 +1,13 @@
 <?php
 include "base.php";
 
-if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username'])) {
+if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
+{
 ?>
 <meta http-equiv="refresh" content="0;dashboard">
 <?php
+return;
 }
-else {
 ?>
 <!DOCTYPE html>
 <html>
@@ -126,6 +127,3 @@ else {
 		</div>
 	</body>
 </html>
-<?php	
-}
-?>

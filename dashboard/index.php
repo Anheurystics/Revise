@@ -1,15 +1,15 @@
 <?php
 	include "..\base.php";
 	
-	$username = $_SESSION['Username'];
-	$user_games = array();
-
-	if(!$username)
+	
+	if(empty($_SESSION['Username']))
 	{
 		echo('<meta http-equiv="refresh" content="0;..">');
+		return;
 	}
-
+	
 	$id = $_SESSION['UserID'];
+	$username = $_SESSION['Username'];
 
 	if(!empty($_POST['new_game']))
 	{
@@ -64,6 +64,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Dashboard - <?php echo($username); ?></title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -137,7 +138,7 @@
 						<label for="game_data">Game Descripton:</label><br/><textarea class="form-control" name="game_desc" id="game_desc" rows="4" cols="50"></textarea><br/>
 						</div>
 						<label for="num_data">Number of rows:</label><input class="form-control" oninput="updateRows()" type="number" name="num_data" value="num_data" id="num_data" min="1"/><br/>
-						<div id="rows" class="form-group">
+						<div id="data-rows" class="form-group">
 						</div>
 						<input class="btn btn-default" type="submit" name="new_game" id="new_game" value="Create Game" />
 					</form>					
@@ -162,11 +163,11 @@
 		function updateRows() {
 			var n = parseInt(document.getElementById("num_data").value);
 			
-			var rows = document.getElementById("rows");
+			var dataRows = document.getElementById("data-rows");
 			var br = document.createElement("br");
 			
-			while (rows.hasChildNodes()) {
-				rows.removeChild(rows.lastChild);
+			while (dataRows.hasChildNodes()) {
+				dataRows.removeChild(dataRows.lastChild);
 			}
 			
 			if(document.getElementById("game_type").value != "ordering")
@@ -176,21 +177,41 @@
 			
 			for(var i = 0; i < parseInt(n) ; i++) {
 				
-				var row = document.createElement("input");
-				row.class = "form-control";
-				row.id = i;
-				row.type = row.name = "row" + i;
-				rows.appendChild(row);
+				var row = document.createElement("div");
+				row.className = "row";
+				
+				var div1 = document.createElement("div");
+				div1.className = "col-sm-12";
+				
+				var col1 = document.createElement("input");
+				col1.className = "form-control";
+				col1.id = i;
+				col1.type = "text";
+				col1.name = "row" + i;
+				
+				div1.appendChild(col1);
+				row.appendChild(div1);
+				
 				if(document.getElementById("game_type").value != "ordering")
 				{
 					i++;
-					var row2 = document.createElement("input");
-					row.class = "form-control";
-					row2.id = i;
-					row2.type = row2.name = "row" + i;
-					rows.appendChild(row2);
+					var div2 = document.createElement("div");
+					div2.className = "col-sm-6";
+					
+					var col2 = document.createElement("input");
+					col2.className = "form-control";
+					col2.id = i;
+					col2.type = "text";
+					col2.name = "row" + i;
+					
+					div1.className = "col-sm-6";
+					
+					div2.appendChild(col2);
+					row.appendChild(div2);
 				}
-				rows.appendChild(document.createElement("br"));
+				
+				dataRows.appendChild(row);
+				dataRows.appendChild(document.createElement("br"));
 			}
 		}
 		</script>		
