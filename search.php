@@ -55,6 +55,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>		
 	</head>
@@ -62,36 +63,38 @@
 	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6">
-					<h1><center> Search results for <?php echo($search_query); ?> <center></h1>
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<h1><center>Results for "<?php echo($search_query); ?>"<center></h1>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-1">
 					<a class="btn btn-info" href=<?php echo($back); ?>><span style="font-size: 32px">Back</span></a>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8" id="searchbox">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10" id="searchbox"> 	
 					<form role="form" method="POST" action="search.php" name="search" id="search">
-						<label for="search_query">Search:</label><input class="form-control" type="text" name="search_query" id="search_query" /><br/>
-						<div class="radio-inline">
-							<label><input type="radio" name="search_type" value="name" checked="checked">Name</label>
+						<input style="margin-bottom: 2vh;" class="form-control" placeholder="Search for reviewers made by other people..." type="text" name="search_query" id="search_query" />
+						<input style="float: left;"class="btn btn-default" type="submit" name="search" id="search" value="Search" />
+						<div class="form-inline" style="float: right;">
+							<div class="radio-inline">
+								<label><input type="radio" name="search_type" value="name" checked="checked">Name</label>
+							</div>
+							<div class="radio-inline">
+								<label><input type="radio" name="search_type" value="user" checked="checked">User</label>
+							</div>
+							<div class="radio-inline">
+								<label><input type="radio" name="search_type" value="category" checked="checked">Category</label>
+							</div>
 						</div>
-						<div class="radio-inline">
-							<label><input type="radio" name="search_type" value="user">User</label>
-						</div>
-						<div class="radio-inline">
-							<label><input type="radio" name="search_type" value="category">Category</label>
-						</div>
-						<input class="btn btn-default" type="submit" name="search" id="search" value="Search" />
 					</form>
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-sm-1"></div>
 			</div>
 			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
+				<div class="col-sm-1"></div>
+				<div class="col-sm-10">
 					<?php
 					$count = count($games);
 					if($count == 0)
@@ -116,7 +119,7 @@
 					}
 					?>
 				</div>
-				<div class="col-md-2"></div>
+				<div class="col-sm-1"></div>
 			</div>			
 		</div>
 	</body>

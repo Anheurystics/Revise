@@ -86,7 +86,7 @@ $(document).ready(function() {
 					$("#registerPass").val("");
 				} else if (data == "taken") {
 					header = "Error!";
-					message = "Username is already taken!";
+					message = "There already exists an account with that username/email!";
 					type = "danger";
 				}
 
