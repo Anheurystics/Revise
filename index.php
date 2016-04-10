@@ -3,10 +3,8 @@ include "base.php";
 
 if(!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']))
 {
-?>
-<meta http-equiv="refresh" content="0;dashboard">
-<?php
-return;
+	echo("<meta http-equiv='refresh' content='0;dashboard'>");
+	return;
 }
 ?>
 <!DOCTYPE html>
@@ -41,7 +39,7 @@ return;
 						<div class="col-sm-1"></div>
 						<div class="col-sm-10"> 	
 							<h1>Revise</h1>
-							<h3>Play with interactive reviewers made by other people, covering different topics in school. Create your own and share them with others!</h3>
+							<h3>Play with interactive reviewers made by other people, covering different topics. Create your own and share them with others!</h3>
 						</div>
 						<div class="col-sm-1"></div>
 					</div>

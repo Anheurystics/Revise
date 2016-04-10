@@ -21,7 +21,7 @@ while($row = mysqli_fetch_array($data))
 }
 
 echo("<script>");
-echo("localStorage.setItem('Revise','" . $stringified . "');");
+echo("localStorage.setItem('BlueHacks-GameData','" . $stringified . "');");
 echo("</script>");
 echo('<meta http-equiv="refresh" content="0;game/' . $game_type . '">');
 ?>

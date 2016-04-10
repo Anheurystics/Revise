@@ -13,10 +13,10 @@
 
 	if(!empty($_POST['new_game']))
 	{
-		$game_name = mysqli_real_escape_string($myqsli, $_POST['game_name']);
-		$game_desc = mysqli_real_escape_string($myqsli, $_POST['game_desc']);
-		$game_category = mysqli_real_escape_string($myqsli, $_POST['category']);
-		$game_type = mysqli_real_escape_string($myqsli, $_POST['game_type']);
+		$game_name = mysqli_real_escape_string($mysqli, $_POST['game_name']);
+		$game_desc = mysqli_real_escape_string($mysqli, $_POST['game_desc']);
+		$game_category = mysqli_real_escape_string($mysqli, $_POST['category']);
+		$game_type = mysqli_real_escape_string($mysqli, $_POST['game_type']);
 		
 		mysqli_query($mysqli, "INSERT INTO games (name, category, description, user_id, type) VALUES(
 			'" . $game_name . "',
@@ -78,7 +78,7 @@
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6">
-					<h1><center> <?php echo("Hello, " . $username); ?> <center></h1>
+					<h1><?php echo("Hello, " . $username); ?></h1>
 				</div>
 				<div class="col-md-3">
 					<a class="btn btn-info" href="../logout.php"><span style="font-size: 32px">Logout</span></a>
@@ -109,8 +109,8 @@
 			<br/>			
 			
 			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-4">
+				<div class="col-md-6">
+					<h2>Create new reviewer</h2>
 					<form role="form" method="POST" action="" name="new_game" id="new_game">
 						<div class="form-group">
 							<label for="game_name">Game Name:</label>
@@ -143,8 +143,8 @@
 						<input class="btn btn-default" type="submit" name="new_game" id="new_game" value="Create Game" />
 					</form>					
 				</div>
-				<div class="col-md-4">
-					<h2>Your games</h2>
+				<div class="col-md-6">
+					<h2>Your games (<?php echo(count($gamelist)); ?>)</h2>
 					<div class="list-group">
 					<?php
 						foreach($gamelist as $game)
@@ -166,7 +166,8 @@
 			var dataRows = document.getElementById("data-rows");
 			var br = document.createElement("br");
 			
-			while (dataRows.hasChildNodes()) {
+			while (dataRows.hasChildNodes())
+			{
 				dataRows.removeChild(dataRows.lastChild);
 			}
 			
@@ -175,8 +176,8 @@
 				n *= 2;
 			}
 			
-			for(var i = 0; i < parseInt(n) ; i++) {
-				
+			for(var i = 0; i < parseInt(n) ; i++)
+			{	
 				var row = document.createElement("div");
 				row.className = "row";
 				
