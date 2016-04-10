@@ -95,10 +95,10 @@
 								<label><input type="radio" name="search_type" value="name" checked="checked">Name</label>
 							</div>
 							<div class="radio-inline">
-								<label><input type="radio" name="search_type" value="user" checked="checked">User</label>
+								<label><input type="radio" name="search_type" value="user">User</label>
 							</div>
 							<div class="radio-inline">
-								<label><input type="radio" name="search_type" value="category" checked="checked">Category</label>
+								<label><input type="radio" name="search_type" value="category">Category</label>
 							</div>
 						</div>
 					</form>

@@ -55,10 +55,10 @@ else {
 										<label><input type="radio" name="search_type" value="name" checked="checked">Name</label>
 									</div>
 									<div class="radio-inline">
-										<label><input type="radio" name="search_type" value="user" checked="checked">User</label>
+										<label><input type="radio" name="search_type" value="user">User</label>
 									</div>
 									<div class="radio-inline">
-										<label><input type="radio" name="search_type" value="category" checked="checked">Category</label>
+										<label><input type="radio" name="search_type" value="category">Category</label>
 									</div>
 								</div>
 							</form>
@@ -70,7 +70,7 @@ else {
 				<div class="col-sm-4">
 					<div style="margin-top: 1vh; margin-bottom: 1vh;">
 						<button class="btn btn-primary" style="display: block; margin-left: auto; margin-right: auto;" type="button" data-toggle="collapse" data-target="#login-register" aria-expanded="false" aria-controls="collapseExample">
-							Log-in/Register
+							Account
 						</button>
 					</div>
 			
@@ -78,7 +78,7 @@ else {
 						<div class="col-sm-1"></div>
 						<div class="col-sm-10">
 							<ul class="nav nav-tabs" style="margin-bottom: 5vh;">
-								<li class="active"><a data-toggle="tab" href="#login">Log-in</a></li>
+								<li class="active"><a data-toggle="tab" href="#login">Log in</a></li>
 								<li><a data-toggle="tab" href="#register">Register</a></li>
 							</ul>
 							

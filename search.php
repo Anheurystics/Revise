@@ -82,10 +82,10 @@
 								<label><input type="radio" name="search_type" value="name" checked="checked">Name</label>
 							</div>
 							<div class="radio-inline">
-								<label><input type="radio" name="search_type" value="user" checked="checked">User</label>
+								<label><input type="radio" name="search_type" value="user">User</label>
 							</div>
 							<div class="radio-inline">
-								<label><input type="radio" name="search_type" value="category" checked="checked">Category</label>
+								<label><input type="radio" name="search_type" value="category">Category</label>
 							</div>
 						</div>
 					</form>
@@ -97,16 +97,7 @@
 				<div class="col-sm-10">
 					<?php
 					$count = count($games);
-					if($count == 0)
-					{
-						echo("<h1>No search results found.</h1>");
-					}
-					elseif($count == 1) {
-						echo("<h1>1 search result found.</h1>");
-					}
-					else {
-						echo("<h1>". $count ." search results found.</h1>");
-					}
+					echo("<h2>" . ($count > 0? $count : "No") . " search result" . ($count > 1? "s" : "") . " found.</h2>");
 					
 					foreach($games as $game)
 					{
